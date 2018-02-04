@@ -5,6 +5,10 @@ var options = {
   promiseLib: promise
 };
 
+if ( process.env.NODE_ENV !== 'production' ) {
+  require('dotenv').config()
+}
+
 var pgp = require('pg-promise')(options);
 var connectionString = process.env.DATABASE_URL;
 var db = pgp(connectionString);
