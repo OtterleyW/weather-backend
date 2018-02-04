@@ -14,7 +14,8 @@ CREATE TABLE perceptions (
   city_id INTEGER,
   temperature VARCHAR,
   comment VARCHAR,
-  created_at TIMESTAMP WITH TIME ZONE
+  created_at TIMESTAMP WITH TIME ZONE,
+  unit VARCHAR
 );
 
 INSERT INTO cities (name, location)
@@ -29,12 +30,12 @@ INSERT INTO cities (name, location)
   VALUES ('Dubai', '25.092535,55.1562243');
 
 
-INSERT INTO perceptions (city_id, temperature, comment, created_at) VALUES (1, '15', 'Windy', now());
+INSERT INTO perceptions (city_id, temperature, comment, created_at, unit) VALUES (1, '15', 'Windy', now(), 'Celsius');
 
-INSERT INTO perceptions (city_id, temperature, comment, created_at) VALUES (2, '-5', 'Snowing', now());
+INSERT INTO perceptions (city_id, temperature, comment, created_at, unit) VALUES (2, '-5', 'Snowing', now(), 'Celsius');
 
-INSERT INTO perceptions (city_id, temperature, comment, created_at) VALUES (2, '15', 'Windy', now());
+INSERT INTO perceptions (city_id, temperature, comment, created_at, unit) VALUES (3, '40', 'Windy', now(), 'Fahrenheit');
 
-INSERT INTO perceptions (city_id, temperature, comment, created_at) VALUES (4, '5', 'Raining', now());
+INSERT INTO perceptions (city_id, temperature, comment, created_at, unit) VALUES (4, '5', 'Raining', now(), 'Celsius');
 
-INSERT INTO perceptions (city_id, temperature, comment, created_at) VALUES (5, '30', 'Sunny', now());
+INSERT INTO perceptions (city_id, temperature, comment, created_at, unit) VALUES (5, '30', 'Sunny', now(), 'Celsius');
