@@ -20,6 +20,10 @@ app.get("/api/cities/:id/perceptions", (request, response) => {
   db.getPerceptionsOfOneCity(request, response);
 });
 
+app.get("/api/perceptions/", (request, response) => {
+  db.getAllPerceptions(request, response);
+});
+
 app.post("/api/perceptions/", (request, response) => {
   db.createPerception(request, response);
 });
