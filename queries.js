@@ -10,7 +10,7 @@ if ( process.env.NODE_ENV !== 'production' ) {
 }
 
 var pgp = require('pg-promise')(options);
-var connectionString = process.env.DATABASE_URL;
+var connectionString = process.env.DATABASE_URL+'?ssl=true';
 var db = pgp(connectionString);
 
 function getAllCities(req, res) {
