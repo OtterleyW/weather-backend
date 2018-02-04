@@ -66,8 +66,27 @@ function getPerceptionsOfOneCity(req, res) {
     });
 }
 
+function createPerception(req, res) {
+  req.body.city_id = parseInt(req.body.city_id);
+  db.none('insert into perceptions(city_id, temperature, comment)' +
+      'values(${city_id}, ${temperature}, ${comment})',
+    req.body)
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Inserted perception'
+        });
+    })
+    .catch(function (err) {
+      console.log(err);
+      res.status(400).end();
+    });
+}
+
 module.exports = {
   getAllCities: getAllCities,
   getSingleCity: getSingleCity,
-  getPerceptionsOfOneCity: getPerceptionsOfOneCity
+  getPerceptionsOfOneCity: getPerceptionsOfOneCity,
+  createPerception: createPerception
 };
