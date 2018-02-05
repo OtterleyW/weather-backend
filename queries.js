@@ -1,10 +1,10 @@
 var promise = require("bluebird");
 
 var options = {
-  // Initialization Options
   promiseLib: promise
 };
 
+// Connect to database
 var connectionString = "";
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -14,7 +14,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 var pgp = require("pg-promise")(options);
-console.log("Database", process.env.DATABASE_URL);
 var db = pgp(connectionString);
 
 function getAllCities(req, res) {
@@ -37,9 +36,7 @@ function getSingleCity(req, res) {
     .one("select * from cities where id = $1", cityID)
     .then(function(data) {
       res.status(200).json({
-        status: "success",
-        data: data,
-        message: "Retrieved ONEcity"
+        data
       });
     })
     .catch(error => {
@@ -71,7 +68,7 @@ function getPerceptionsOfOneCity(req, res) {
     )
     .then(function(data) {
       res.status(200).json({
-        data: data
+        data
       });
     })
     .catch(error => {

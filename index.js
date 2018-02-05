@@ -2,31 +2,16 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const db = require('./queries');
+const db = require("./queries");
+const citiesRouter = require("./controllers/cities");
+const perceptionsRouter = require("./controllers/perceptions");
 
+app.use("/api/cities", citiesRouter);
+app.use("/api/perceptions", perceptionsRouter);
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("build"));
 
-app.get("/api/cities", (request, response) => {
-  db.getAllCities(request, response);
-});
-
-app.get("/api/cities/:id", (request, response) => {
-  db.getSingleCity(request, response);
-});
-
-app.get("/api/cities/:id/perceptions", (request, response) => {
-  db.getPerceptionsOfOneCity(request, response);
-});
-
-app.get("/api/perceptions/", (request, response) => {
-  db.getAllPerceptions(request, response);
-});
-
-app.post("/api/perceptions/", (request, response) => {
-  db.createPerception(request, response);
-});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
