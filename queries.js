@@ -18,7 +18,7 @@ var db = pgp(connectionString);
 
 function getAllCities(req, res) {
   db
-    .any("select * from cities")
+    .any("SELECT * FROM cities")
     .then(function(data) {
       res.status(200).json({
         data
@@ -33,7 +33,7 @@ function getAllCities(req, res) {
 function getSingleCity(req, res) {
   var cityID = parseInt(req.params.id);
   db
-    .one("select * from cities where id = $1", cityID)
+    .one("SELECT * FROM cities WHERE id = $1", cityID)
     .then(function(data) {
       res.status(200).json({
         data
@@ -63,7 +63,7 @@ function getPerceptionsOfOneCity(req, res) {
   var cityID = parseInt(req.params.id);
   db
     .any(
-      "select * from cities INNER JOIN perceptions ON cities.id = perceptions.city_id WHERE cities.id = $1 ORDER BY perceptions.created_at DESC",
+      "SELECT * FROM cities INNER JOIN perceptions ON cities.id = perceptions.city_id WHERE cities.id = $1 ORDER BY perceptions.created_at DESC",
       cityID
     )
     .then(function(data) {
@@ -81,7 +81,7 @@ function createPerception(req, res) {
   req.body.city_id = parseInt(req.body.city_id);
   db
     .none(
-      "insert into perceptions(city_id, temperature, comment, created_at)" +
+      "INSERT INTO perceptions(city_id, temperature, comment, created_at)" +
         "values(${city_id}, ${temperature}, ${comment}, now())",
       req.body
     )
