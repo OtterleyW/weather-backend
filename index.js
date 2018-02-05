@@ -6,10 +6,11 @@ const db = require("./queries");
 const citiesRouter = require("./controllers/cities");
 const perceptionsRouter = require("./controllers/perceptions");
 
-app.use("/api/cities", citiesRouter);
-app.use("/api/perceptions", perceptionsRouter);
+
 app.use(bodyParser.json());
 app.use(cors());
+app.use("/api/cities", citiesRouter);
+app.use("/api/perceptions", perceptionsRouter);
 app.use(express.static("build"));
 
 

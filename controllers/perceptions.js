@@ -6,6 +6,7 @@ perceptionsRouter.get("/", (request, response) => {
 });
 
 perceptionsRouter.post("/", (request, response) => {
+  console.log(request)
   db.createPerception(request, response);
 });
 

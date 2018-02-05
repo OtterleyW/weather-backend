@@ -78,11 +78,12 @@ function getPerceptionsOfOneCity(req, res) {
 }
 
 function createPerception(req, res) {
+  console.log(req.body)
   req.body.city_id = parseInt(req.body.city_id);
   db
     .none(
-      "INSERT INTO perceptions(city_id, temperature, comment, created_at)" +
-        "values(${city_id}, ${temperature}, ${comment}, now())",
+      "INSERT INTO perceptions(city_id, temperature, created_at)" +
+        "values(${city_id}, ${temperature}, now())",
       req.body
     )
     .then(function() {
